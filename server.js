@@ -10,7 +10,7 @@ const ads = require('./routes/ads.routes');
 const users = require('./routes/users.routes');
 
 let uriDB = process.env.DB_URI;
-let secretKey = process.env.EXPRESS_SESSION_SECRET;
+let secretKey = 'xfys2';
 
 const app = express();
 const server = app.listen(process.env.PORT || 8000, () => {
@@ -51,7 +51,7 @@ app.use(
 );
 
 app.use('/api', ads);
-app.use('/api', users);
+app.use('/api/auth', users);
 
 app.use((req, res, next) => {
   req.db = db;
