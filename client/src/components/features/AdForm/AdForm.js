@@ -17,7 +17,8 @@ const AdForm = ({ action, actionText, ...props }) => {
   const [price, setPrice] = useState(props.price || '');
   const [location, setLocation] = useState(props.location || '');
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     action({
       id,
       title,

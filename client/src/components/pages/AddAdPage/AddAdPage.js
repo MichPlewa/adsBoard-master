@@ -9,7 +9,7 @@ const AddAdPage = () => {
   let navigate = useNavigate();
 
   const handleSubmit = (ad) => {
-    dispatch(addAd);
+    console.log('here');
     const fd = new FormData();
     fd.append('title', ad.title);
     fd.append('userName', ad.userName);
@@ -26,10 +26,10 @@ const AddAdPage = () => {
       contentType: 'application/json',
     };
 
-    fetch(`${API_URL}api/ads`, options);
-    dispatch(fetchAds);
-
-    navigate('/');
+    fetch(`${API_URL}api/ads`, options).then(() => {
+      dispatch(fetchAds);
+      navigate('/');
+    });
   };
 
   return <AdForm action={handleSubmit} actionText="Add ad" />;
