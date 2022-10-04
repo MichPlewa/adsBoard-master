@@ -74,6 +74,7 @@ exports.addAd = async (req, res) => {
 
 exports.updateAdById = async (req, res) => {
   const { title, description, date, price, location, userName } = req.body;
+  console.log('dupa');
   try {
     const ad = await Ad.findById(req.params.id);
     if (ad) {

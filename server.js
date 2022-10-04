@@ -50,6 +50,8 @@ app.use(
   })
 );
 
+app.use(express.static(path.join(__dirname, '/public')));
+
 app.use('/api', ads);
 app.use('/api/auth', users);
 
@@ -63,11 +65,10 @@ app.get('*', (req, res) => {
 });
 
 app.use((req, res) => {
-  res.status(404).json({ message: 'Not found...' });
+  res.status(404).json({ message: 'Hej' });
 });
 
 app.use((err, req, res) => {
-  console.log(err);
   res.status(500).json({ message: err });
 });
 

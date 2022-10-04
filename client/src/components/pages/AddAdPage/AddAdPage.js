@@ -1,5 +1,5 @@
 import AdForm from '../../features/AdForm/AdForm';
-import { addAd, fetchAds } from '../../../redux/adsRedux';
+import { fetchAds } from '../../../redux/adsRedux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../../config';
@@ -9,7 +9,6 @@ const AddAdPage = () => {
   let navigate = useNavigate();
 
   const handleSubmit = (ad) => {
-    console.log('here');
     const fd = new FormData();
     fd.append('title', ad.title);
     fd.append('userName', ad.userName);

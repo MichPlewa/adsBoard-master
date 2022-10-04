@@ -12,7 +12,7 @@ const AdForm = ({ action, actionText, ...props }) => {
   const id = props.id;
   const [title, setTitle] = useState(props.title || '');
   const [description, setDescription] = useState(props.description || '');
-  const [date, setDate] = useState(props.date || newDate);
+  const [date, setDate] = useState(new Date(props.date) || newDate);
   const [image, setImage] = useState(props.image || '');
   const [price, setPrice] = useState(props.price || '');
   const [location, setLocation] = useState(props.location || '');
@@ -32,8 +32,6 @@ const AdForm = ({ action, actionText, ...props }) => {
 
     navigate('/');
   };
-
-  console.log(date);
 
   const convertedDate = date && date.toISOString().substring(0, 10);
 
