@@ -1,7 +1,7 @@
 import { Card, Row, Button, Col } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { IMAGES_URL } from '../../../config';
+import { API_URL, IMAGES_URL } from '../../../config';
 import DeleteAd from '../../features/DeleteAd/DeleteAd';
 import { getAdById, removeAdById, fetchAds } from '../../../redux/adsRedux';
 import { getUser } from '../../../redux/userRedux';
@@ -27,7 +27,16 @@ const AdPage = () => {
   const handleRemove = (e) => {
     e.preventDefault();
     dispatch(removeAdById(id));
-    handleClose();
+
+    const options = {
+      method: 'DELETE',
+      credentials: 'include',
+    };
+
+    fetch(`${API_URL}api/ads/${id}`, options).then(() => {
+      dispatch(fetchAds());
+      handleClose();
+    });
   };
 
   if (showModal)

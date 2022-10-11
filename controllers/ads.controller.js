@@ -74,10 +74,10 @@ exports.addAd = async (req, res) => {
 
 exports.updateAdById = async (req, res) => {
   const { title, description, date, price, location, userName } = req.body;
-  console.log('dupa');
   try {
     const ad = await Ad.findById(req.params.id);
     if (ad) {
+      const image = req.file ? req.file.filename : req.body.image;
       await Ad.updateOne(
         { _id: req.params.id },
         {
@@ -85,7 +85,7 @@ exports.updateAdById = async (req, res) => {
             title: title,
             description: description,
             date: date,
-            image: req.file.filename,
+            image: image,
             price: price,
             location: location,
             userName: userName,

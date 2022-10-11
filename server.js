@@ -29,14 +29,6 @@ db.on('error', (err) => {
   console.log('error by connecting to db', err);
 });
 
-db.once('open', () => {
-  console.log('Connected to the database');
-});
-
-db.on('error', (err) => {
-  console.log('Error: ', err);
-});
-
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -51,7 +43,10 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, '/public')));
-
+app.use((req, res, next) => {
+  console.log(req.originalUrl, req.method);
+  next();
+});
 app.use('/api', ads);
 app.use('/api/auth', users);
 

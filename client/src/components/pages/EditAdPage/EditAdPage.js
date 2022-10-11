@@ -30,8 +30,9 @@ const EditAdPage = () => {
       contentType: 'application/json',
     };
 
-    fetch(`${API_URL}api/ads`, options).then(() => {
-      dispatch(fetchAds);
+    console.log(`${API_URL}api/ads/${id}`, options);
+    fetch(`${API_URL}api/ads/${id}`, options).then(() => {
+      dispatch(fetchAds());
       navigate('/');
     });
   };
